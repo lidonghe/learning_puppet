@@ -1,11 +1,12 @@
 class {'apache':
     default_vhost       => false,
     default_mods        => false,
-    default_confd_files => false,    
+    default_confd_files => false,
+    mpm_module          => 'prefork', 
 }
 
 include 'apache::mod::wsgi'
-
+include 'apache::mod::php'
 apache::vhost{'apache_vhost':
     port => '80',
     docroot => '/var/www',
